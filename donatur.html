@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi - DonasiBersama</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/donatur.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>DonasiBersama</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="beranda.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="admin/login.php" class="admin-link"><i class="fas fa-lock"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="donatur-page">
+        <div class="donatur-container">
+            <!-- Form Donasi Card -->
+            <div class="donatur-card">
+                <div class="donatur-header">
+                    <h2>💝 Donasi Sekarang</h2>
+                    <p class="subtitle">Bantu mereka yang membutuhkan dengan donasi Anda</p>
+                </div>
+
+                <!-- Tab Pilihan Donasi -->
+                <div class="donasi-tabs" style="display: flex; gap: 10px; margin-bottom: 30px;">
+                    <button class="tab-btn active" onclick="showDonasiType('uang')" id="tabUangBtn">
+                        <i class="fas fa-money-bill-wave"></i> Donasi Uang
+                    </button>
+                    <button class="tab-btn" onclick="showDonasiType('makanan')" id="tabMakananBtn">
+                        <i class="fas fa-utensils"></i> Donasi Makanan
+                    </button>
+                    <button class="tab-btn" onclick="showDonasiType('barang')" id="tabBarangBtn">
+                        <i class="fas fa-box"></i> Donasi Barang
+                    </button>
+                </div>
+
+                <!-- Form Donasi Uang -->
+                <form id="donationFormUang" class="donasi-form active" onsubmit="processDonation(event, 'uang')">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="namaUang" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="emailUang" placeholder="Masukkan email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nomor WhatsApp (Opsional)</label>
+                        <input type="tel" id="phoneUang" placeholder="081234567890">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pilih Nominal Donasi</label>
+                        <div class="nominal-options">
+                            <button type="button" class="nominal-btn" onclick="selectNominal(50000)">Rp50.000</button>
+                            <button type="button" class="nominal-btn" onclick="selectNominal(100000)">Rp100.000</button>
+                            <button type="button" class="nominal-btn" onclick="selectNominal(250000)">Rp250.000</button>
+                            <button type="button" class="nominal-btn" onclick="selectNominal(500000)">Rp500.000</button>
+                            <button type="button" class="nominal-btn"
+                                onclick="selectNominal(1000000)">Rp1.000.000</button>
+                        </div>
+                        <input type="number" id="nominal" placeholder="Masukkan nominal lain" min="1000"
+                            style="margin-top: 10px;" onchange="clearNominalSelection()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pilih Metode Pembayaran</label>
+                        <div class="payment-methods">
+                            <div class="payment-method" onclick="selectPayment('bca')" id="method-bca">
+                                <i class="fas fa-university"></i>
+                                <span>BCA</span>
+                            </div>
+                            <div class="payment-method" onclick="selectPayment('mandiri')" id="method-mandiri">
+                                <i class="fas fa-university"></i>
+                                <span>Mandiri</span>
+                            </div>
+                            <div class="payment-method" onclick="selectPayment('bri')" id="method-bri">
+                                <i class="fas fa-university"></i>
+                                <span>BRI</span>
+                            </div>
+                            <div class="payment-method" onclick="selectPayment('gopay')" id="method-gopay">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>GoPay</span>
+                            </div>
+                            <div class="payment-method" onclick="selectPayment('ovo')" id="method-ovo">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>OVO</span>
+                            </div>
+                            <div class="payment-method" onclick="selectPayment('dana')" id="method-dana">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>DANA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pesan Dukungan (Opsional)</label>
+                        <textarea id="pesanUang" rows="3" placeholder="Tulis pesan dukungan Anda..."></textarea>
+                    </div>
+
+                    <div class="loading" id="loadingUang">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 10px;">Memproses donasi...</p>
+                    </div>
+
+                    <button type="submit" class="donate-btn" id="submitBtnUang">
+                        <i class="fas fa-paper-plane"></i>
+                        Donasi Sekarang
+                    </button>
+                </form>
+
+                <!-- Form Donasi Makanan -->
+                <form id="donationFormMakanan" class="donasi-form" onsubmit="processDonation(event, 'makanan')">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="namaMakanan" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="emailMakanan" placeholder="Masukkan email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nomor WhatsApp</label>
+                        <input type="tel" id="phoneMakanan" placeholder="081234567890" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jenis Makanan</label>
+                        <select id="jenisMakanan" required>
+                            <option value="">Pilih Jenis Makanan</option>
+                            <option value="Beras">Beras (5kg)</option>
+                            <option value="Minyak">Minyak Goreng</option>
+                            <option value="Gula">Gula Pasir</option>
+                            <option value="Mie">Mie Instan</option>
+                            <option value="Sembako">Paket Sembako</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah</label>
+                        <input type="number" id="jumlahMakanan" placeholder="Jumlah (dalam satuan)" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deskripsi Lengkap</label>
+                        <textarea id="deskripsiMakanan" rows="4"
+                            placeholder="Jelaskan secara detail makanan yang akan didonasikan..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lokasi Penjemputan</label>
+                        <input type="text" id="lokasiMakanan" placeholder="Alamat lengkap untuk penjemputan" required>
+                    </div>
+
+                    <div class="loading" id="loadingMakanan">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 10px;">Memproses donasi...</p>
+                    </div>
+
+                    <button type="submit" class="donate-btn" id="submitBtnMakanan">
+                        <i class="fas fa-paper-plane"></i>
+                        Kirim Donasi Makanan
+                    </button>
+                </form>
+
+                <!-- Form Donasi Barang -->
+                <form id="donationFormBarang" class="donasi-form" onsubmit="processDonation(event, 'barang')">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="namaBarang" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="emailBarang" placeholder="Masukkan email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nomor WhatsApp</label>
+                        <input type="tel" id="phoneBarang" placeholder="081234567890" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kategori Barang</label>
+                        <select id="kategoriBarang" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="Pakaian">Pakaian Layak Pakai</option>
+                            <option value="Buku">Buku & Alat Tulis</option>
+                            <option value="Mainan">Mainan Anak</option>
+                            <option value="Elektronik">Elektronik</option>
+                            <option value="Perabot">Perabot Rumah</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <input type="text" id="namaBarangInput" placeholder="Contoh: Baju bekas layak pakai" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah</label>
+                        <input type="number" id="jumlahBarang" placeholder="Jumlah barang" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kondisi Barang</label>
+                        <select id="kondisiBarang" required>
+                            <option value="">Pilih Kondisi</option>
+                            <option value="Baru">Baru</option>
+                            <option value="Bekas Baik">Bekas - Kondisi Baik</option>
+                            <option value="Bekas Layak">Bekas - Layak Pakai</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deskripsi Lengkap</label>
+                        <textarea id="deskripsiBarang" rows="4"
+                            placeholder="Jelaskan secara detail barang yang akan didonasikan..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lokasi Penjemputan</label>
+                        <input type="text" id="lokasiBarang" placeholder="Alamat lengkap untuk penjemputan" required>
+                    </div>
+
+                    <div class="loading" id="loadingBarang">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 10px;">Memproses donasi...</p>
+                    </div>
+
+                    <button type="submit" class="donate-btn" id="submitBtnBarang">
+                        <i class="fas fa-paper-plane"></i>
+                        Kirim Donasi Barang
+                    </button>
+                </form>
+
+                <!-- Invoice -->
+                <div id="invoice" class="invoice" style="display: none;">
+                    <h3><i class="fas fa-file-invoice"></i> Detail Donasi</h3>
+                    <div class="invoice-detail">
+                        <span>Nama:</span>
+                        <span id="invoice-nama"></span>
+                    </div>
+                    <div class="invoice-detail">
+                        <span>Email:</span>
+                        <span id="invoice-email"></span>
+                    </div>
+                    <div class="invoice-detail">
+                        <span>Tipe Donasi:</span>
+                        <span id="invoice-tipe"></span>
+                    </div>
+                    <div class="invoice-detail" id="invoice-detail-nominal" style="display: none;">
+                        <span>Nominal:</span>
+                        <span id="invoice-nominal"></span>
+                    </div>
+                    <div class="invoice-detail" id="invoice-detail-barang" style="display: none;">
+                        <span>Barang:</span>
+                        <span id="invoice-barang"></span>
+                    </div>
+                    <div class="invoice-detail">
+                        <span>ID Transaksi:</span>
+                        <span id="invoice-id"></span>
+                    </div>
+                    <div class="invoice-detail">
+                        <span>Waktu:</span>
+                        <span id="invoice-waktu"></span>
+                    </div>
+                    <div class="invoice-detail">
+                        <span>Status:</span>
+                        <span id="invoice-status" class="status-badge"></span>
+                    </div>
+                    <div class="invoice-total">
+                        <span>Total:</span>
+                        <span id="invoice-total"></span>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; color: #666; font-size: 12px;">
+                        *Simpan ID transaksi untuk konfirmasi
+                    </p>
+                </div>
+            </div>
+
+            <!-- Riwayat Donasi -->
+            <div class="history-section">
+                <h3><i class="fas fa-history"></i> Riwayat Donasi Anda</h3>
+                <div id="donation-history" class="history-list">
+                    <p style="text-align: center; color: #666;">Belum ada riwayat donasi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-heart"></i>
+                        <span>DonasiBersama</span>
+                    </div>
+                    <p>Platform donasi online terpercaya untuk membantu sesama.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="beranda.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Donasi No. 123, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@donasibersama.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DonasiBersama. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // State management
+        let selectedNominal = null;
+        let selectedPayment = null;
+        let currentDonasiType = 'uang';
+
+        // Show/hide donasi type tabs
+        function showDonasiType(type) {
+            currentDonasiType = type;
+
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab${type.charAt(0).toUpperCase() + type.slice(1)}Btn`).classList.add('active');
+
+            // Update forms
+            document.querySelectorAll('.donasi-form').forEach(form => form.classList.remove('active'));
+            document.getElementById(`donationForm${type.charAt(0).toUpperCase() + type.slice(1)}`).classList.add('active');
+        }
+
+// Nominal functions
+        function selectNominal(nilai) {
+            selectedNominal = nilai;
+
+            document.getElementById('nominal').value = nilai;
+
+            document.querySelectorAll('.nominal-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            // Pastikan UI aktif walaupun tidak ada parameter event
+            const btnToSelect = document.querySelector(`.nominal-btn[onclick*="${nilai}"]`);
+            if (btnToSelect) btnToSelect.classList.add('selected');
+        }
+
+
+        function clearNominalSelection() {
+            selectedNominal = null;
+            document.querySelectorAll('.nominal-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+        }
+
+        // Payment method
+        function selectPayment(metode) {
+            selectedPayment = metode;
+
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            document.getElementById(`method-${metode}`).classList.add('selected');
+        }
+
+        // Process donation
+        async function processDonation(event, type) {
+            event.preventDefault();
+
+            let donationData = {};
+
+            if (type === 'uang') {
+                donationData = {
+                    donor_name: document.getElementById('namaUang').value,
+                    donor_email: document.getElementById('emailUang').value,
+                    donor_phone: document.getElementById('phoneUang').value,
+                    donation_type: 'uang',
+                    amount: parseInt(document.getElementById('nominal').value),
+                    payment_method: selectedPayment,
+                    description: document.getElementById('pesanUang').value
+                };
+
+                // Validate
+                if (!donationData.donor_name || donationData.donor_name.length < 3) {
+                    alert('Nama lengkap minimal 3 karakter');
+                    return;
+                }
+                if (!donationData.donor_email || !donationData.donor_email.includes('@')) {
+                    alert('Email tidak valid');
+                    return;
+                }
+                if (!donationData.amount || donationData.amount < 1000) {
+                    alert('Nominal donasi minimal Rp 1.000');
+                    return;
+                }
+                if (!selectedPayment) {
+                    alert('Pilih metode pembayaran');
+                    return;
+                }
+            }
+            else if (type === 'makanan') {
+                donationData = {
+                    donor_name: document.getElementById('namaMakanan').value,
+                    donor_email: document.getElementById('emailMakanan').value,
+                    donor_phone: document.getElementById('phoneMakanan').value,
+                    donation_type: 'makanan',
+                    food_items: document.getElementById('jenisMakanan').value + ' - ' + document.getElementById('jumlahMakanan').value + ' unit',
+                    location: document.getElementById('lokasiMakanan').value,
+                    description: document.getElementById('deskripsiMakanan').value
+                };
+
+                if (!donationData.donor_name || !donationData.donor_email || !donationData.donor_phone) {
+                    alert('Harap isi semua field yang wajib');
+                    return;
+                }
+            }
+            else if (type === 'barang') {
+                donationData = {
+                    donor_name: document.getElementById('namaBarang').value,
+                    donor_email: document.getElementById('emailBarang').value,
+                    donor_phone: document.getElementById('phoneBarang').value,
+                    donation_type: 'barang',
+                    goods_items: document.getElementById('kategoriBarang').value + ' - ' +
+                        document.getElementById('namaBarangInput').value + ' (' +
+                        document.getElementById('jumlahBarang').value + ' pcs) - ' +
+                        document.getElementById('kondisiBarang').value,
+                    location: document.getElementById('lokasiBarang').value,
+                    description: document.getElementById('deskripsiBarang').value
+                };
+
+                if (!donationData.donor_name || !donationData.donor_email || !donationData.donor_phone) {
+                    alert('Harap isi semua field yang wajib');
+                    return;
+                }
+            }
+
+            // Show loading
+            document.getElementById(`loading${type.charAt(0).toUpperCase() + type.slice(1)}`).classList.add('active');
+            document.getElementById(`submitBtn${type.charAt(0).toUpperCase() + type.slice(1)}`).disabled = true;
+
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Generate transaction ID
+                const transactionId = 'DON-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+
+                // Show invoice
+                showInvoice({
+                    ...donationData,
+                    transactionId,
+                    status: 'SUCCESS',
+                    timestamp: new Date().toLocaleString('id-ID')
+                });
+
+                // Save to history
+                saveToHistory(donationData, transactionId);
+
+                // Reset form
+                if (type === 'uang') {
+                    document.getElementById('donationFormUang').reset();
+                } else if (type === 'makanan') {
+                    document.getElementById('donationFormMakanan').reset();
+                } else {
+                    document.getElementById('donationFormBarang').reset();
+                }
+
+                selectedNominal = null;
+                selectedPayment = null;
+                document.querySelectorAll('.nominal-btn, .payment-method').forEach(el => {
+                    el.classList.remove('selected');
+                });
+
+                alert(`✅ Donasi berhasil!\nID Transaksi: ${transactionId}`);
+
+            } catch (error) {
+                alert('❌ Terjadi kesalahan. Silakan coba lagi.');
+            } finally {
+                document.getElementById(`loading${type.charAt(0).toUpperCase() + type.slice(1)}`).classList.remove('active');
+                document.getElementById(`submitBtn${type.charAt(0).toUpperCase() + type.slice(1)}`).disabled = false;
+            }
+        }
+
+        // Show invoice
+        function showInvoice(data) {
+            document.getElementById('invoice-nama').textContent = data.donor_name;
+            document.getElementById('invoice-email').textContent = data.donor_email;
+            document.getElementById('invoice-tipe').textContent =
+                data.donation_type.charAt(0).toUpperCase() + data.donation_type.slice(1);
+
+            if (data.donation_type === 'uang') {
+                document.getElementById('invoice-detail-nominal').style.display = 'flex';
+                document.getElementById('invoice-detail-barang').style.display = 'none';
+                document.getElementById('invoice-nominal').textContent =
+                    `Rp ${data.amount.toLocaleString('id-ID')}`;
+                document.getElementById('invoice-total').textContent =
+                    `Rp ${data.amount.toLocaleString('id-ID')}`;
+            } else {
+                document.getElementById('invoice-detail-nominal').style.display = 'none';
+                document.getElementById('invoice-detail-barang').style.display = 'flex';
+                if (data.donation_type === 'makanan') {
+                    document.getElementById('invoice-barang').textContent = data.food_items;
+                } else {
+                    document.getElementById('invoice-barang').textContent = data.goods_items;
+                }
+                document.getElementById('invoice-total').textContent = 'Non-tunai';
+            }
+
+            document.getElementById('invoice-id').textContent = data.transactionId;
+            document.getElementById('invoice-waktu').textContent = data.timestamp;
+
+            const statusElement = document.getElementById('invoice-status');
+            statusElement.textContent = 'BERHASIL';
+            statusElement.className = 'status-badge status-success';
+
+            document.getElementById('invoice').style.display = 'block';
+            document.getElementById('invoice').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Save to history
+        function saveToHistory(data, transactionId) {
+            let history = JSON.parse(localStorage.getItem('donation_history') || '[]');
+
+            history.unshift({
+                ...data,
+                transactionId,
+                date: new Date().toISOString()
+            });
+
+            // Keep only last 10 items
+            if (history.length > 10) history = history.slice(0, 10);
+
+            localStorage.setItem('donation_history', JSON.stringify(history));
+            loadDonationHistory();
+        }
+
+        // Load donation history
+        function loadDonationHistory() {
+            const history = JSON.parse(localStorage.getItem('donation_history') || '[]');
+            const historyContainer = document.getElementById('donation-history');
+
+            if (history.length === 0) {
+                historyContainer.innerHTML = '<p style="text-align: center; color: #666;">Belum ada riwayat donasi</p>';
+                return;
+            }
+
+            let html = '';
+            history.forEach(item => {
+                html += `
+                    <div class="history-item">
+                        <div class="history-header">
+                            <span class="history-id">${item.transactionId}</span>
+                            <span class="status-badge status-success">SELESAI</span>
+                        </div>
+                        <div class="history-detail">
+                            <span>${item.donation_type.charAt(0).toUpperCase() + item.donation_type.slice(1)}</span>
+                            <span>${new Date(item.date).toLocaleDateString('id-ID')}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            historyContainer.innerHTML = html;
+        }
+
+        // Debounce for nominal input
+        let debounceTimer;
+        document.getElementById('nominal')?.addEventListener('input', function () {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                if (this.value) {
+                    clearNominalSelection();
+                }
+            }, 500);
+        });
+
+        // Load history on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            loadDonationHistory();
+        });
+    </script>
+</body>
+
+</html>

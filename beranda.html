@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - DonasiBersama</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/beranda.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>DonasiBersama</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="beranda.html" class="active">Beranda</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="admin/login.php" class="admin-link"><i class="fas fa-lock"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section class="hero-slider">
+        <div class="slider-container">
+            <div class="slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="slide-content">
+                    <h1>Bersama Membantu Sesama</h1>
+                    <p>Bergabunglah dalam program donasi kami untuk membantu mereka yang membutuhkan</p>
+                    <a href="#choice" class="btn-cta">Mulai Donasi</a>
+                </div>
+            </div>
+            <div class="slide" style="background: linear-gradient(135deg, #48bb78 0%, #2c7a4d 100%);">
+                <div class="slide-content">
+                    <h1>Setiap Donasi Berarti</h1>
+                    <p>Donasi Anda akan memberikan senyuman dan harapan baru bagi yang membutuhkan</p>
+                    <a href="#choice" class="btn-cta">Donasi Sekarang</a>
+                </div>
+            </div>
+            <div class="slide" style="background: linear-gradient(135deg, #f6ad55 0%, #dd6b20 100%);">
+                <div class="slide-content">
+                    <h1>Bantuan untuk Semua</h1>
+                    <p>Kami menyalurkan bantuan kepada mereka yang benar-benar membutuhkan</p>
+                    <a href="#choice" class="btn-cta">Lihat Program</a>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistik Section -->
+    <section class="statistik-section">
+        <div class="container">
+            <h2 class="section-title">Dampak Donasi Kami</h2>
+            <div class="statistik-grid">
+                <div class="statistik-item">
+                    <div class="statistik-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="statistik-number" data-target="1500">0</div>
+                    <div class="statistik-label">Donatur Aktif</div>
+                </div>
+                <div class="statistik-item">
+                    <div class="statistik-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="statistik-number" data-target="850">0</div>
+                    <div class="statistik-label">Penerima Manfaat</div>
+                </div>
+                <div class="statistik-item">
+                    <div class="statistik-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="statistik-number" data-target="2350">0</div>
+                    <div class="statistik-label">Total Donasi</div>
+                </div>
+                <div class="statistik-item">
+                    <div class="statistik-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="statistik-number" data-target="12500000">0</div>
+                    <div class="statistik-label">Donasi Uang (Rp)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Choice Section -->
+    <section class="choice-section" id="choice">
+        <div class="container">
+            <h2 class="section-title">Pilih Peran Anda</h2>
+            <div class="choice-container">
+                <div class="choice-card donatur" onclick="window.location.href='donatur.html'">
+                    <div class="card-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Donatur</h3>
+                    <p>Saya ingin berdonasi dan membantu sesama</p>
+                    <ul class="benefit-list">
+                        <li><i class="fas fa-check-circle"></i> Donasi Uang</li>
+                        <li><i class="fas fa-check-circle"></i> Donasi Makanan</li>
+                        <li><i class="fas fa-check-circle"></i> Donasi Barang</li>
+                    </ul>
+                    <button class="btn-choice" onclick="event.stopPropagation(); window.location.href='donatur.html'">Pilih Donatur</button>
+                </div>
+                <div class="choice-card penerima" onclick="window.location.href='penerima.html'">
+                    <div class="card-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Penerima</h3>
+                    <p>Saya membutuhkan bantuan untuk kebutuhan</p>
+                    <ul class="benefit-list">
+                        <li><i class="fas fa-check-circle"></i> Bantuan Uang</li>
+                        <li><i class="fas fa-check-circle"></i> Bantuan Makanan</li>
+                        <li><i class="fas fa-check-circle"></i> Bantuan Barang</li>
+                    </ul>
+                    <button class="btn-choice" onclick="event.stopPropagation(); window.location.href='penerima.html'">Pilih Penerima</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Unggulan -->
+    <section class="program-section">
+        <div class="container">
+            <h2 class="section-title">Program Unggulan</h2>
+            <div class="program-grid">
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1488521787991-0e7d5c8b1b3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Program Makanan">
+                    <div class="program-content">
+                        <h3>Bantuan Pangan</h3>
+                        <p>Menyediakan makanan pokok untuk keluarga kurang mampu</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>Terkumpul: 75%</span>
+                            <span>Target: 1000 paket</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Program Pendidikan">
+                    <div class="program-content">
+                        <h3>Beasiswa Anak</h3>
+                        <p>Bantuan pendidikan untuk anak-anak berprestasi</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 60%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>Terkumpul: 60%</span>
+                            <span>Target: 50 anak</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Program Kesehatan">
+                    <div class="program-content">
+                        <h3>Bantuan Kesehatan</h3>
+                        <p>Bantuan biaya berobat untuk masyarakat tidak mampu</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 45%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>Terkumpul: 45%</span>
+                            <span>Target: Rp 100 Juta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section class="testimoni-section">
+        <div class="container">
+            <h2 class="section-title">Apa Kata Mereka</h2>
+            <div class="testimoni-grid">
+                <div class="testimoni-card">
+                    <div class="testimoni-image">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimoni">
+                    </div>
+                    <p class="testimoni-text">"Terima kasih DonasiBersama, bantuan yang saya terima sangat berarti untuk keluarga saya."</p>
+                    <h4 class="testimoni-name">Budi Santoso</h4>
+                    <p class="testimoni-role">Penerima Manfaat</p>
+                </div>
+                <div class="testimoni-card">
+                    <div class="testimoni-image">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimoni">
+                    </div>
+                    <p class="testimoni-text">"Senang bisa berbagi melalui platform ini, prosesnya mudah dan transparan."</p>
+                    <h4 class="testimoni-name">Siti Aminah</h4>
+                    <p class="testimoni-role">Donatur</p>
+                </div>
+                <div class="testimoni-card">
+                    <div class="testimoni-image">
+                        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Testimoni">
+                    </div>
+                    <p class="testimoni-text">"Program beasiswanya sangat membantu anak saya untuk terus sekolah."</p>
+                    <h4 class="testimoni-name">Ahmad Hidayat</h4>
+                    <p class="testimoni-role">Penerima Beasiswa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Mari Bergabung Bersama Kami</h2>
+                <p>Setiap donasi Anda akan memberikan dampak positif bagi mereka yang membutuhkan</p>
+                <div class="cta-buttons">
+                    <a href="donatur.html" class="btn-cta-primary">Jadi Donatur</a>
+                    <a href="penerima.html" class="btn-cta-secondary">Minta Bantuan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-heart"></i>
+                        <span>DonasiBersama</span>
+                    </div>
+                    <p>Platform donasi online terpercaya untuk membantu sesama. Bersama kita bisa memberikan dampak positif bagi mereka yang membutuhkan.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="beranda.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Program</h3>
+                    <ul>
+                        <li><a href="#">Bantuan Pangan</a></li>
+                        <li><a href="#">Beasiswa Anak</a></li>
+                        <li><a href="#">Bantuan Kesehatan</a></li>
+                        <li><a href="#">Bantuan Bencana</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Donasi No. 123, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@donasibersama.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DonasiBersama. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Slider functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+            slideIndex = n;
+        }
+
+        function currentSlide(n) {
+            showSlide(n);
+        }
+
+        // Auto slide
+        setInterval(() => {
+            slideIndex = (slideIndex + 1) % slides.length;
+            showSlide(slideIndex);
+        }, 5000);
+
+        // Statistik counter
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.statistik-number');
+            statNumbers.forEach(number => {
+                const target = parseInt(number.getAttribute('data-target'));
+                const increment = target / 50;
+                let current = 0;
+                
+                const updateNumber = () => {
+                    if (current < target) {
+                        current += increment;
+                        if (current > target) current = target;
+                        if (number.dataset.target == '12500000') {
+                            number.textContent = 'Rp ' + Math.floor(current).toLocaleString('id-ID');
+                        } else {
+                            number.textContent = Math.floor(current).toLocaleString('id-ID');
+                        }
+                        requestAnimationFrame(updateNumber);
+                    }
+                };
+                
+                updateNumber();
+            });
+        }
+
+        // Run animation when section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.statistik-section'));
+    </script>
+</body>
+</html>

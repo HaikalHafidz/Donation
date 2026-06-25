@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonasiBersama - Platform Donasi Online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>DonasiBersama</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Beranda</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="admin/login.php" class="admin-link"><i class="fas fa-lock"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Bersama Membantu Sesama</h1>
+            <p>Bergabunglah dalam program donasi kami untuk membantu mereka yang membutuhkan</p>
+        </div>
+    </section>
+
+    <section class="choice-section">
+        <div class="container">
+            <h2>Pilih Peran Anda</h2>
+            <div class="choice-container">
+                <div class="choice-card donatur" onclick="window.location.href='donatur.html'">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Donatur</h3>
+                    <p>Saya ingin berdonasi dan membantu sesama</p>
+                </div>
+                <div class="choice-card penerima" onclick="window.location.href='penerima.html'">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Penerima</h3>
+                    <p>Saya membutuhkan bantuan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-heart"></i>
+                        <span>DonasiBersama</span>
+                    </div>
+                    <p>Platform donasi online terpercaya untuk membantu sesama. Bersama kita bisa memberikan dampak positif bagi mereka yang membutuhkan.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                        <li><a href="admin/login.php">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Program</h3>
+                    <ul>
+                        <li><a href="#">Bantuan Pangan</a></li>
+                        <li><a href="#">Beasiswa Anak</a></li>
+                        <li><a href="#">Bantuan Kesehatan</a></li>
+                        <li><a href="#">Bantuan Bencana</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Donasi No. 123, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@donasibersama.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DonasiBersama. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Penerima Bantuan - DonasiBersama</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/penerima.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>DonasiBersama</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="beranda.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="admin/login.php" class="admin-link"><i class="fas fa-lock"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Form Penerima Bantuan</h1>
+            <p>Isi formulir di bawah ini untuk mengajukan permohonan bantuan</p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <!-- Progress Bar -->
+                <div class="form-progress">
+                    <div class="progress-step active" id="step1Progress">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Pilih Bantuan</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="step2Progress">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Data Diri</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" id="step3Progress">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Verifikasi</span>
+                    </div>
+                </div>
+
+                <form id="penerimaForm" class="penerima-form">
+                    <!-- Step 1: Pilih Bantuan -->
+                    <div class="form-step active" id="step1">
+                        <h2>Pilih Jenis Bantuan</h2>
+                        <div class="bantuan-options">
+                            <div class="bantuan-card" onclick="selectBantuan('uang')">
+                                <input type="radio" name="tipe_bantuan" value="uang" id="bantuanUang" hidden>
+                                <i class="fas fa-money-bill-wave"></i>
+                                <h3>Bantuan Uang</h3>
+                                <p>Bantuan dana tunai untuk kebutuhan mendesak</p>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Biaya pengobatan</li>
+                                    <li><i class="fas fa-check"></i> Biaya pendidikan</li>
+                                    <li><i class="fas fa-check"></i> Kebutuhan sehari-hari</li>
+                                </ul>
+                            </div>
+                            <div class="bantuan-card" onclick="selectBantuan('makanan')">
+                                <input type="radio" name="tipe_bantuan" value="makanan" id="bantuanMakanan" hidden>
+                                <i class="fas fa-utensils"></i>
+                                <h3>Bantuan Makanan</h3>
+                                <p>Paket sembako dan makanan pokok</p>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Beras</li>
+                                    <li><i class="fas fa-check"></i> Minyak goreng</li>
+                                    <li><i class="fas fa-check"></i> Mie instan</li>
+                                    <li><i class="fas fa-check"></i> Lauk pauk</li>
+                                </ul>
+                            </div>
+                            <div class="bantuan-card" onclick="selectBantuan('barang')">
+                                <input type="radio" name="tipe_bantuan" value="barang" id="bantuanBarang" hidden>
+                                <i class="fas fa-box"></i>
+                                <h3>Bantuan Barang</h3>
+                                <p>Barang-barang kebutuhan pokok</p>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Pakaian layak pakai</li>
+                                    <li><i class="fas fa-check"></i> Perlengkapan sekolah</li>
+                                    <li><i class="fas fa-check"></i> Perlengkapan rumah</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Detail Bantuan berdasarkan tipe -->
+                        <div id="detailUang" class="bantuan-detail hidden">
+                            <div class="form-group">
+                                <label>Jumlah Uang yang Dibutuhkan (Rp)</label>
+                                <input type="number" id="jumlahUang" min="10000" placeholder="Masukkan jumlah">
+                            </div>
+                        </div>
+
+                        <div id="detailMakanan" class="bantuan-detail hidden">
+                            <div class="form-group">
+                                <label>Jenis Makanan yang Dibutuhkan</label>
+                                <select id="jenisMakanan">
+                                    <option value="">Pilih Jenis</option>
+                                    <option value="Beras">Beras</option>
+                                    <option value="Minyak">Minyak Goreng</option>
+                                    <option value="Gula">Gula Pasir</option>
+                                    <option value="Mie">Mie Instan</option>
+                                    <option value="Sembako">Paket Sembako</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah</label>
+                                <input type="number" id="jumlahMakanan" min="1" placeholder="Jumlah yang dibutuhkan">
+                            </div>
+                        </div>
+
+                        <div id="detailBarang" class="bantuan-detail hidden">
+                            <div class="form-group">
+                                <label>Jenis Barang yang Dibutuhkan</label>
+                                <input type="text" id="jenisBarang" placeholder="Contoh: Pakaian anak, Buku sekolah, dll">
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah</label>
+                                <input type="number" id="jumlahBarang" min="1" placeholder="Jumlah yang dibutuhkan">
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn-next" onclick="nextStep()">Selanjutnya</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Data Diri -->
+                    <div class="form-step" id="step2">
+                        <h2>Data Diri Pemohon</h2>
+                        
+                        <div class="form-group">
+                            <label>Nama Lengkap <span class="required">*</span></label>
+                            <input type="text" id="namaLengkap" required placeholder="Masukkan nama lengkap sesuai KTP">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>NIK <span class="required">*</span></label>
+                                <input type="text" id="nik" required placeholder="Nomor Induk Kependudukan" maxlength="16">
+                            </div>
+                            <div class="form-group">
+                                <label>No. KK</label>
+                                <input type="text" id="noKK" placeholder="Nomor Kartu Keluarga">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tempat, Tanggal Lahir <span class="required">*</span></label>
+                            <div class="form-row">
+                                <input type="text" id="tempatLahir" placeholder="Tempat lahir" style="flex: 1;">
+                                <input type="date" id="tanggalLahir" style="flex: 1;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jenis Kelamin <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="jenisKelamin" value="L"> Laki-laki</label>
+                                <label><input type="radio" name="jenisKelamin" value="P"> Perempuan</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Alamat Lengkap <span class="required">*</span></label>
+                            <textarea id="alamat" rows="3" required placeholder="Masukkan alamat lengkap (RT/RW, Kelurahan, Kecamatan, Kota)"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Kelurahan</label>
+                                <input type="text" id="kelurahan" placeholder="Kelurahan">
+                            </div>
+                            <div class="form-group">
+                                <label>Kecamatan</label>
+                                <input type="text" id="kecamatan" placeholder="Kecamatan">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Kota</label>
+                                <input type="text" id="kota" placeholder="Kota">
+                            </div>
+                            <div class="form-group">
+                                <label>Provinsi</label>
+                                <input type="text" id="provinsi" placeholder="Provinsi">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>No. Telepon <span class="required">*</span></label>
+                                <input type="tel" id="noTelepon" required placeholder="08123456789">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="email" placeholder="contoh@email.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pekerjaan</label>
+                            <input type="text" id="pekerjaan" placeholder="Pekerjaan saat ini">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Penghasilan per Bulan</label>
+                            <select id="penghasilan">
+                                <option value="">-- Pilih Penghasilan --</option>
+                                <option value="<1jt">Kurang dari Rp 1.000.000</option>
+                                <option value="1-2jt">Rp 1.000.000 - Rp 2.000.000</option>
+                                <option value="2-3jt">Rp 2.000.000 - Rp 3.000.000</option>
+                                <option value=">3jt">Lebih dari Rp 3.000.000</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jumlah Tanggungan</label>
+                            <input type="number" id="tanggungan" min="0" placeholder="Jumlah anggota keluarga">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Alasan Membutuhkan Bantuan <span class="required">*</span></label>
+                            <textarea id="alasan" rows="4" required placeholder="Jelaskan alasan Anda membutuhkan bantuan"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Upload Dokumen Pendukung</label>
+                            <div class="upload-area" onclick="document.getElementById('fileKTP').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Klik untuk upload KTP</p>
+                                <input type="file" id="fileKTP" accept="image/*,.pdf" style="display: none;">
+                            </div>
+                            <small>Format: JPG, PNG, PDF (Maks. 2MB)</small>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn-prev" onclick="prevStep()">Kembali</button>
+                            <button type="button" class="btn-next" onclick="nextStep()">Selanjutnya</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Verifikasi -->
+                    <div class="form-step" id="step3">
+                        <h2>Verifikasi Data</h2>
+                        
+                        <div class="verification-summary">
+                            <h3>Ringkasan Permohonan</h3>
+                            <div id="summaryContent"></div>
+                        </div>
+                        
+                        <div class="agreement">
+                            <label>
+                                <input type="checkbox" id="setuju" required>
+                                Saya menyatakan bahwa data yang saya isi adalah benar dan dapat dipertanggungjawabkan. Saya bersedia mengikuti prosedur verifikasi yang ditetapkan.
+                            </label>
+                        </div>
+                        
+                        <div class="captcha">
+                            <label>Kode Verifikasi</label>
+                            <div class="captcha-box">
+                                <span id="captchaCode"></span>
+                                <button type="button" onclick="refreshCaptcha()"><i class="fas fa-sync-alt"></i></button>
+                            </div>
+                            <input type="text" id="captchaInput" placeholder="Masukkan kode di atas" required>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn-prev" onclick="prevStep()">Kembali</button>
+                            <button type="submit" class="btn-submit" onclick="submitForm(event)">Kirim Permohonan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-heart"></i>
+                        <span>DonasiBersama</span>
+                    </div>
+                    <p>Platform donasi online terpercaya untuk membantu sesama.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="beranda.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Donasi No. 123, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@donasibersama.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DonasiBersama. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // State management
+        let currentStep = 1;
+        let selectedBantuan = '';
+
+        // Step navigation
+        function nextStep() {
+            if (currentStep === 1) {
+                // Validate step 1
+                const bantuan = document.querySelector('input[name="tipe_bantuan"]:checked');
+                if (!bantuan) {
+                    alert('Pilih jenis bantuan terlebih dahulu');
+                    return;
+                }
+                selectedBantuan = bantuan.value;
+            }
+            
+            if (currentStep === 2) {
+                // Validate step 2
+                const required = ['namaLengkap', 'nik', 'tempatLahir', 'tanggalLahir', 'alamat', 'noTelepon', 'alasan'];
+                for (let field of required) {
+                    const element = document.getElementById(field);
+                    if (!element || !element.value) {
+                        alert('Harap isi semua field yang wajib diisi');
+                        element?.focus();
+                        return;
+                    }
+                }
+                
+                const jk = document.querySelector('input[name="jenisKelamin"]:checked');
+                if (!jk) {
+                    alert('Pilih jenis kelamin');
+                    return;
+                }
+                
+                updateSummary();
+            }
+
+            // Update step
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep++;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            
+            // Update progress
+            for (let i = 1; i <= 3; i++) {
+                const progress = document.getElementById(`step${i}Progress`);
+                if (i <= currentStep) {
+                    progress.classList.add('active');
+                } else {
+                    progress.classList.remove('active');
+                }
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep--;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                
+                // Update progress
+                for (let i = 1; i <= 3; i++) {
+                    const progress = document.getElementById(`step${i}Progress`);
+                    if (i <= currentStep) {
+                        progress.classList.add('active');
+                    } else {
+                        progress.classList.remove('active');
+                    }
+                }
+            }
+        }
+
+        // Select bantuan
+        function selectBantuan(tipe) {
+            selectedBantuan = tipe;
+            
+            // Update UI
+            document.querySelectorAll('.bantuan-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Check radio
+            document.getElementById(`bantuan${tipe.charAt(0).toUpperCase() + tipe.slice(1)}`).checked = true;
+            
+            // Show/hide detail
+            document.querySelectorAll('.bantuan-detail').forEach(detail => {
+                detail.classList.add('hidden');
+            });
+            document.getElementById(`detail${tipe.charAt(0).toUpperCase() + tipe.slice(1)}`).classList.remove('hidden');
+        }
+
+        // Update summary
+        function updateSummary() {
+            const nama = document.getElementById('namaLengkap').value;
+            const nik = document.getElementById('nik').value;
+            const alamat = document.getElementById('alamat').value;
+            const noTelp = document.getElementById('noTelepon').value;
+            
+            let tipeText = '';
+            let detailText = '';
+            
+            if (selectedBantuan === 'uang') {
+                tipeText = 'Bantuan Uang';
+                detailText = `Rp ${document.getElementById('jumlahUang').value || '0'}`;
+            } else if (selectedBantuan === 'makanan') {
+                tipeText = 'Bantuan Makanan';
+                detailText = `${document.getElementById('jenisMakanan').value || '-'} - ${document.getElementById('jumlahMakanan').value || '0'} unit`;
+            } else {
+                tipeText = 'Bantuan Barang';
+                detailText = `${document.getElementById('jenisBarang').value || '-'} (${document.getElementById('jumlahBarang').value || '0'} pcs)`;
+            }
+            
+            const summary = `
+                <div class="summary-item"><strong>Jenis Bantuan:</strong> ${tipeText}</div>
+                <div class="summary-item"><strong>Detail:</strong> ${detailText}</div>
+                <div class="summary-item"><strong>Nama Lengkap:</strong> ${nama}</div>
+                <div class="summary-item"><strong>NIK:</strong> ${nik}</div>
+                <div class="summary-item"><strong>Alamat:</strong> ${alamat}</div>
+                <div class="summary-item"><strong>No. Telepon:</strong> ${noTelp}</div>
+            `;
+            
+            document.getElementById('summaryContent').innerHTML = summary;
+        }
+
+        // Captcha
+        function refreshCaptcha() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('captchaCode').textContent = captcha;
+        }
+
+        // Submit form
+        function submitForm(event) {
+            event.preventDefault();
+            
+            // Validate captcha
+            const captchaInput = document.getElementById('captchaInput').value;
+            const captchaCode = document.getElementById('captchaCode').textContent;
+            
+            if (captchaInput !== captchaCode) {
+                alert('Kode captcha salah');
+                refreshCaptcha();
+                return;
+            }
+            
+            if (!document.getElementById('setuju').checked) {
+                alert('Anda harus menyetujui pernyataan');
+                return;
+            }
+            
+            // Collect all data
+            const formData = {
+                tipe_bantuan: selectedBantuan,
+                nama_lengkap: document.getElementById('namaLengkap').value,
+                nik: document.getElementById('nik').value,
+                no_kk: document.getElementById('noKK').value,
+                tempat_lahir: document.getElementById('tempatLahir').value,
+                tanggal_lahir: document.getElementById('tanggalLahir').value,
+                jenis_kelamin: document.querySelector('input[name="jenisKelamin"]:checked')?.value,
+                alamat: document.getElementById('alamat').value,
+                kelurahan: document.getElementById('kelurahan').value,
+                kecamatan: document.getElementById('kecamatan').value,
+                kota: document.getElementById('kota').value,
+                provinsi: document.getElementById('provinsi').value,
+                no_telepon: document.getElementById('noTelepon').value,
+                email: document.getElementById('email').value,
+                pekerjaan: document.getElementById('pekerjaan').value,
+                penghasilan: document.getElementById('penghasilan').value,
+                tanggungan: document.getElementById('tanggungan').value,
+                alasan: document.getElementById('alasan').value,
+                
+                // Bantuan specific
+                jumlah_uang: document.getElementById('jumlahUang')?.value,
+                jenis_makanan: document.getElementById('jenisMakanan')?.value,
+                jumlah_makanan: document.getElementById('jumlahMakanan')?.value,
+                jenis_barang: document.getElementById('jenisBarang')?.value,
+                jumlah_barang: document.getElementById('jumlahBarang')?.value
+            };
+            
+            // Save to localStorage for demo
+            let applications = JSON.parse(localStorage.getItem('recipient_applications') || '[]');
+            applications.unshift({
+                ...formData,
+                id: 'RCP-' + Date.now(),
+                status: 'menunggu',
+                tanggal: new Date().toISOString()
+            });
+            localStorage.setItem('recipient_applications', JSON.stringify(applications));
+            
+            // Show success message
+            alert('Permohonan bantuan berhasil dikirim! Tim kami akan segera memproses.');
+            
+            // Redirect
+            window.location.href = 'sukses.html?type=recipient';
+        }
+
+        // Initialize captcha on page load
+        window.onload = function() {
+            refreshCaptcha();
+        };
+    </script>
+</body>
+</html>

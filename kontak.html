@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - DonasiBersama</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/kontak.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>DonasiBersama</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="beranda.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="kontak.html" class="active">Kontak</a></li>
+                <li><a href="admin/login.php" class="admin-link"><i class="fas fa-lock"></i> Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Hubungi Kami</h1>
+            <p>Kami siap membantu Anda</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>Informasi Kontak</h2>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Alamat</h3>
+                            <p>Jl. Donasi No. 123, Kelurahan Peduli<br>Kecamatan Berbagi, Jakarta 12345</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telepon</h3>
+                            <p>(021) 1234-5678</p>
+                            <p>0812-3456-7890 (WhatsApp)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@donasibersama.com</p>
+                            <p>support@donasibersama.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Jam Operasional</h3>
+                            <p>Senin - Jumat: 08.00 - 17.00</p>
+                            <p>Sabtu: 08.00 - 14.00</p>
+                            <p>Minggu & Libur Nasional: Tutup</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-media">
+                        <h3>Media Sosial</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2>Kirim Pesan</h2>
+                    <form id="contactForm" onsubmit="sendMessage(event)">
+                        <div class="form-group">
+                            <label>Nama Lengkap <span class="required">*</span></label>
+                            <input type="text" id="contactName" required placeholder="Masukkan nama Anda">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" id="contactEmail" required placeholder="Masukkan email Anda">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Nomor Telepon</label>
+                            <input type="tel" id="contactPhone" placeholder="Masukkan nomor telepon">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Subjek <span class="required">*</span></label>
+                            <select id="contactSubject" required>
+                                <option value="">Pilih Subjek</option>
+                                <option value="Informasi Donasi">Informasi Donasi</option>
+                                <option value="Bantuan Teknis">Bantuan Teknis</option>
+                                <option value="Kerjasama">Kerjasama</option>
+                                <option value="Saran & Kritik">Saran & Kritik</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Pesan <span class="required">*</span></label>
+                            <textarea id="contactMessage" rows="5" required placeholder="Tulis pesan Anda di sini..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="contactCopy" value="1">
+                                Kirim salinan ke email saya
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Lokasi Kami</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126930.5584279477!2d106.75941105!3d-6.22937935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945b34b9b%3A0x537b5c6c9c3c3c3c!2sJakarta!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Pertanyaan Umum (FAQ)</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Bagaimana cara berdonasi?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda dapat berdonasi dengan memilih menu "Donatur" di halaman beranda, kemudian pilih jenis donasi yang diinginkan (uang, makanan, atau barang) dan ikuti langkah-langkah selanjutnya.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Apakah donasi saya akan sampai ke penerima?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, kami menjamin 100% donasi Anda akan tersalurkan kepada penerima yang membutuhkan. Kami juga memberikan laporan transparan mengenai penyaluran donasi melalui dashboard admin dan notifikasi email.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Bagaimana cara menjadi penerima bantuan?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda dapat mendaftar sebagai penerima dengan memilih menu "Penerima" di halaman beranda, kemudian isi formulir permintaan bantuan sesuai kebutuhan. Tim kami akan melakukan verifikasi dan menghubungi Anda.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Apakah ada biaya administrasi?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tidak ada biaya administrasi untuk donatur. Seluruh donasi akan disalurkan 100% kepada penerima. Biaya operasional kami berasal dari donatur tetap dan mitra korporasi.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Bagaimana cara melacak donasi saya?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Setiap donasi akan mendapatkan ID transaksi unik. Anda dapat menggunakan ID tersebut untuk melacak status donasi melalui halaman "Lacak Donasi" atau menghubungi customer service kami.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Apakah saya bisa mendapatkan bukti donasi?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, setelah donasi berhasil, Anda akan mendapatkan invoice/bukti donasi yang dapat diunduh dalam format PDF. Bukti ini dapat digunakan untuk keperluan administrasi atau laporan pajak.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Butuh Bantuan Langsung?</h2>
+                <p>Hubungi customer service kami melalui WhatsApp untuk respon lebih cepat</p>
+                <a href="https://wa.me/6281234567890" class="btn-cta-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Chat WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-heart"></i>
+                        <span>DonasiBersama</span>
+                    </div>
+                    <p>Platform donasi online terpercaya untuk membantu sesama. Bersama kita bisa memberikan dampak positif bagi mereka yang membutuhkan.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="beranda.html">Beranda</a></li>
+                        <li><a href="tentang.html">Tentang Kami</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Program</h3>
+                    <ul>
+                        <li><a href="#">Bantuan Pangan</a></li>
+                        <li><a href="#">Beasiswa Anak</a></li>
+                        <li><a href="#">Bantuan Kesehatan</a></li>
+                        <li><a href="#">Bantuan Bencana</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Donasi No. 123, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@donasibersama.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DonasiBersama. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Send message
+        function sendMessage(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                alert('Harap isi semua field yang wajib');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Format email tidak valid');
+                return;
+            }
+            
+            // Simulate sending
+            alert('Pesan Anda telah terkirim! Kami akan segera merespon dalam 1x24 jam.');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            
+            // Optional: save to localStorage
+            const messages = JSON.parse(localStorage.getItem('contact_messages') || '[]');
+            messages.unshift({
+                name,
+                email,
+                subject,
+                message,
+                date: new Date().toISOString()
+            });
+            localStorage.setItem('contact_messages', JSON.stringify(messages));
+        }
+
+        // Toggle FAQ
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('i');
+            
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Auto-expand FAQ if URL has hash
+        window.addEventListener('load', function() {
+            if (window.location.hash) {
+                const element = document.querySelector(window.location.hash);
+                if (element && element.classList.contains('faq-item')) {
+                    const answer = element.querySelector('.faq-answer');
+                    const icon = element.querySelector('.faq-question i');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
