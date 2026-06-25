@@ -1,0 +1,307 @@
+/* css/donatur.css */
+.donatur-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 20px;
+}
+
+.donatur-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.donatur-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.donatur-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.donatur-header h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.donatur-header .subtitle {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Nominal Options */
+.nominal-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.nominal-btn {
+    padding: 12px;
+    background: #f0f0f0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+.nominal-btn:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.nominal-btn.selected {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #5a67d8;
+}
+
+/* Payment Methods */
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.payment-method {
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.payment-method:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.payment-method.selected {
+    border-color: #667eea;
+    background: #eef2ff;
+}
+
+.payment-method img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.payment-method span {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+/* Donate Button */
+.donate-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+}
+
+.donate-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.donate-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Invoice */
+.invoice {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    animation: fadeIn 0.5s ease;
+}
+
+.invoice h3 {
+    color: #333;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.invoice-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+.invoice-detail:last-child {
+    border-bottom: none;
+}
+
+.invoice-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #667eea;
+    border-top: 2px solid #ddd;
+    margin-top: 10px;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-success {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status-pending {
+    background: #feebc8;
+    color: #744210;
+}
+
+.status-failed {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+/* Loading */
+.loading {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.loading.active {
+    display: block;
+}
+
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #667eea;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* History Section */
+.history-section {
+    margin-top: 40px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.history-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.history-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 3px solid #667eea;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.history-id {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+.history-detail {
+    display: flex;
+    justify-content: space-between;
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .donatur-card {
+        padding: 25px;
+    }
+    
+    .nominal-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .payment-method {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nominal-options {
+        grid-template-columns: 1fr;
+    }
+}
